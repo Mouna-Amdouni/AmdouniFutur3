@@ -1,0 +1,173 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}comptes{% endblock %}
+
+{% block style %}
+
+
+{% endblock %}
+
+{% block body %}
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">    <img src="https://scontent.ftun4-1.fna.fbcdn.net/v/t1.15752-9/131032922_1156434281466016_3160520140419395504_n.png?_nc_cat=103&ccb=2&_nc_sid=ae9488&_nc_ohc=jxThqoabDycAX8CDkfW&_nc_ht=scontent.ftun4-1.fna&oh=6e07304c5256131b4a482159451a3913&oe=5FFC6169">
+</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" style="color:#10aeda">Accueil</a>
+        </li>
+     
+      </ul>
+<a class="btn btn-info" href="{{path('updateAdmin')}}">modifier mon profil</a>
+ <a style="border-color: #10aeda;
+    background-color: #10aeda;
+    margin-top: 6%;
+    margin-bottom: 1%;
+    margin-left: -8%;"class="btn btn-primary"  href="{{path('app_logout')}}">Se déconnecter</a>
+    </div>
+  </div>
+</nav>
+<div>
+</div>
+
+<main style="    margin-left: 20%;
+    margin-top: 3%;
+    margin-right: 20%;">
+<h3 style="color:#10aeda">La liste des sondés :</h3>
+{% for sonde in sondes %}
+    <table class="table">
+    <tr>
+    <th>cin</th>
+    <th>nom</th>
+    <th>prénom</th>
+    <th>age</th>
+    <th>date de Naissance</th>
+    <th>email</th>
+    <th>tel</th>
+    <th>genre</th>
+    <th>adresse</th>
+    </tr>
+    <tr>
+    <td>{{sonde.cin}}</td>
+    <td>{{sonde.nom}}</td>
+    <td>{{sonde.prenom}}</td>
+    <td>{{sonde.age}}</td>
+    <td>{{sonde.dateNaissance|date('d/m/Y')}}</td>
+    <td>{{sonde.email}}</td>
+    <td>{{sonde.tel}}</td>
+    <td>
+    {% if sonde.genre == 1 %}
+    homme
+    {% else %}
+        femme
+    {% endif %}
+    </td>
+    <td>{{sonde.adresse}}</td>
+    </tr>
+    </table>
+{% endfor %}
+<h3 style="color:#10aeda">La liste des enqueteurs </h3>
+{% for enqueteur in enqueteurs %}
+    <table class="table">
+    <tr>
+        <th>nom</th>
+        <th>prénom</th>
+        <th>age</th>
+        <th>date de Naissance</th>
+        <th>email</th>
+        <th>tel</th>
+        <th>genre</th>
+        <th>matricule fiscale</th>
+        <th>adresse</th>
+    </tr>
+    <tr>
+        <td>{{enqueteur.nom}}</td>
+        <td>{{enqueteur.prenom}}</td>
+        <td>{{enqueteur.age}}</td>
+        <td>{{enqueteur.dateNaissance|date('d/m/Y')}}</td>
+        <td>{{enqueteur.email}}</td>
+        <td>{{enqueteur.tel}}</td>
+        <td>{% if enqueteur.genre == 1 %}
+    homme
+    {% else %}
+        femme
+    {% endif %}</td>
+        <td>{{enqueteur.matriculeFiscale}}</td>
+        <td>{{enqueteur.adresse}}</td>
+    </tr>
+</table>
+{% endfor %}
+<h3 style="color:#10aeda"> la liste des consultants </h3>
+
+{% for consultant in consultants %}
+    <table class="table">
+    <tr>
+    <th>cin</th>
+    <th>nom</th>
+    <th>prénom</th>
+    <th>age</th>
+    <th>date de Naissance</th>
+    <th>email</th>
+    <th>tel</th>
+    <th>genre</th>
+    <th>adresse</th>
+    </tr>
+    <tr>
+    <td>{{consultant.cin}}</td>
+    <td>{{consultant.nom}}</td>
+    <td>{{consultant.prenom}}</td>
+    <td>{{consultant.age}}</td>
+    <td>{{consultant.dateNaissance|date('d/m/Y')}}</td>
+    <td>{{consultant.email}}</td>
+    <td>{{consultant.tel}}</td>
+    <td>
+    {% if consultant.genre == 1 %}
+    homme
+    {% else %}
+        femme
+    {% endif %}
+    </td>
+    <td>{{consultant.adresse}}</td>
+    </tr>
+    </table>
+    </main>
+{% endfor %}
+
+
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-12 col-md">
+        <img class="mb-2" style="height: 58px;
+    width: 14%;" src="https://scontent.ftun4-1.fna.fbcdn.net/v/t1.15752-9/131362750_1645750308942476_3542390376714356479_n.png?_nc_cat=102&ccb=2&_nc_sid=ae9488&_nc_ohc=9BIGKuYvkbAAX_-PNIj&_nc_ht=scontent.ftun4-1.fna&oh=6e984e2024aaae71d89928aee1f84d36&oe=5FFB7EE4" alt="" width="24" height="19">
+        <small class="d-block mb-3 text-muted">© 2020-2021</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Sondage</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">Création</a></li>
+          <li><a class="link-secondary" href="#">Répondre</a></li>
+          <li><a class="link-secondary" href="#">Statistique</a></li>
+          <li><a class="link-secondary" href="#">Rémunération</a></li>
+        
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Qui sommes-nous</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="link-secondary" href="#">Le concept</a></li>
+          <li><a class="link-secondary" href="#">Contact</a></li>
+          <li><a class="link-secondary" href="#">Nous rejoindre</a></li>
+      
+        </ul>
+      </div>
+     
+    </div>
+  </footer>
+
+
+{% endblock %}

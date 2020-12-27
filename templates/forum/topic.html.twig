@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} - forum - {{ topic.name }} {% endblock %}
+
+{% block body %}
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">    <img src="https://scontent.ftun4-1.fna.fbcdn.net/v/t1.15752-9/131032922_1156434281466016_3160520140419395504_n.png?_nc_cat=103&ccb=2&_nc_sid=ae9488&_nc_ohc=jxThqoabDycAX8CDkfW&_nc_ht=scontent.ftun4-1.fna&oh=6e07304c5256131b4a482159451a3913&oe=5FFC6169">
+</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" style="color:#10aeda">Accueil</a>
+        </li>
+      <li class="nav-item">
+          <a class="nav-link" href="#">Qui sommes-nous</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sondage
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Créer</a></li>
+                        <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Répondre</a></li>
+          </ul>
+        </li>
+          
+       <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+          <a style=" margin:1% ; border-color: #10aeda; background-color:#10aeda; "class="btn btn-primary" href="{{path('app_login')}} ">Se connecter</a>
+    <a style=" margin:1% ; border-color: #10aeda; background-color:#10aeda; "class="btn btn-primary" href="{{path('addsonde')}}">S'inscrire</a>
+
+    </div>
+  </div>
+</nav>
+<main class="font-monospace">
+<!-- Breadcrumb -->
+<div class="font-monospace" id="breadcrumb">
+
+        <a class="btn btn-info" href="{{ path('forum', {'idSondage': idSondage}) }}">Retourner à la liste des chats</a>
+</div>
+
+<!-- END Breadcrumb -->
+
+<div class="col-xl-12">
+    <h1 style="text-align:center"class="page-name">Titre du chat : {{ topic.name }}</h1>
+</div>
+<div style="width: 25%;
+    margin-left: 37%;border: 2px #10aeda solid;
+    padding: 1%;
+">
+{% for message in messages %}
+    
+        <div class="col-xl-12 message">
+           <!-- {% if (app.user and message.idUser == app.user.id ) or ("Admin"   in app.user.roles) or ("Enqueteur"   in app.user.roles) or ("consultant"   in app.user.roles) %}
+                <a href="{{ path('editMessage',{id: message.id}) }}">
+                    <p class="edit-message"><i>✍</i><br/>Edit</p>
+                </a>
+            {% endif %}-->
+            <div class="row">
+                <div class="col-md-3 message-user" style="border: solid 1px white">
+{#                    <img src="{{ asset('img/users/.png')}}" alt=" image de profile">#}
+
+                        <span class="message-role {{ message.roles }}-role">
+                            <b>{{ message.roles | title }}</b>
+                        </span>
+                    </p>
+                    <p>
+                        <span>{{ message.publicationDate | date('d/m/Y H:i:s') }}</span>
+                       
+                    </p>
+                </div>
+                <div class="col-md-9 message-body" style="border: solid 1px white; width: 100%;">
+                    <div class="message-content">
+                        <p>{{ message.content }}</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    
+    
+{% endfor %}
+<div class="col-xl-12 message" id="new-message">
+    {% if app.user is null %}
+        <div class="bg-danger" id="no-new-message">
+            <p class="no-form">Vous devez être connecté pour écrire un message</p>
+        </div>
+    
+        {% else %}
+            <div id="new-message-form">
+                {{ form_start(form) }}
+                <label for="new_message_content" class="required">repondre dans le chat : {{ topic.name }}</label>
+                {{ form_errors(form) }}
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+            </div>
+        
+    {% endif %}
+</div>
+</div>
+</main>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% block body %}
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">    <img src="https://scontent.ftun4-1.fna.fbcdn.net/v/t1.15752-9/131032922_1156434281466016_3160520140419395504_n.png?_nc_cat=103&ccb=2&_nc_sid=ae9488&_nc_ohc=jxThqoabDycAX8CDkfW&_nc_ht=scontent.ftun4-1.fna&oh=6e07304c5256131b4a482159451a3913&oe=5FFC6169">
+</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  
+      </ul>
+         <a style=" margin:1% color:#10aeda; border-color: #10aeda; background-color:#10aeda; "class="btn btn-primary" href="{{path('accueil')}}">Se déconnecter</a>
+
+     
+    </div>
+  </div>
+</nav>
+<h1 style="text-align:center"> Bienvenu à la page de l'administrateur</h1>
+<a class="btn btn-info" style="    margin: 9%;
+    padding: 2%;
+    margin-left: 41%;"href="{{path("comptes")}}">Consulter les comptes utilisateurs</a>
+
+{% endblock %}
